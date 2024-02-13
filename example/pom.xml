@@ -116,7 +116,7 @@
         </dependency>
         <dependency>
             <groupId>co.aikar</groupId>
-            <artifactId>acf-paper</artifactId>
+            <artifactId>acf-paper-modified</artifactId>
             <version><!--VERSION-->0.5.1-SNAPSHOT<!--VERSION--></version>
             <scope>compile</scope>
         </dependency>

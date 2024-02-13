@@ -23,6 +23,8 @@
 
 package co.aikar.commands;
 
+import net.kyori.adventure.text.minimessage.MiniMessage;
+import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
@@ -71,7 +73,11 @@ public class BukkitCommandIssuer implements CommandIssuer {
 
     @Override
     public void sendMessageInternal(String message) {
-        sender.sendMessage(ACFBukkitUtil.color(message));
+        if(ACFBukkitUtil.IS_ADVENTURE_MINIMESSAGE_SUPPORTED) {
+            sender.sendMessage(ACFBukkitUtil.convertLegacyColorsComponent(message));
+        } else {
+            sender.sendMessage(ACFBukkitUtil.color(message));
+        }
     }
 
     @Override

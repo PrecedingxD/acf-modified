@@ -29,12 +29,12 @@
 
     <parent>
         <groupId>co.aikar</groupId>
-        <artifactId>acf-parent</artifactId>
+        <artifactId>acf-parent-modified</artifactId>
         <version><!--VERSION-->0.5.1-SNAPSHOT<!--VERSION--></version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>acf-brigadier</artifactId>
+    <artifactId>acf-brigadier-modified</artifactId>
     <version><!--VERSION-->0.5.1-SNAPSHOT<!--VERSION--></version>
 
     <name>ACF (Brigadier)</name>
@@ -49,7 +49,7 @@
     <dependencies>
         <dependency>
             <groupId>co.aikar</groupId>
-            <artifactId>acf-core</artifactId>
+            <artifactId>acf-core-modified</artifactId>
             <version><!--VERSION-->0.5.1-SNAPSHOT<!--VERSION--></version>
             <scope>provided</scope>
         </dependency>

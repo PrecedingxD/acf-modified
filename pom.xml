@@ -24,7 +24,7 @@
 <project>
     <modelVersion>4.0.0</modelVersion>
     <groupId>co.aikar</groupId>
-    <artifactId>acf-parent</artifactId>
+    <artifactId>acf-parent-modified</artifactId>
     <version><!--VERSION-->0.5.1-SNAPSHOT<!--VERSION--></version>
     <packaging>pom</packaging>
     <name>ACF (All)</name>

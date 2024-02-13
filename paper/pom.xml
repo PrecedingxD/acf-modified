@@ -29,12 +29,12 @@
 
     <parent>
         <groupId>co.aikar</groupId>
-        <artifactId>acf-parent</artifactId>
+        <artifactId>acf-parent-modified</artifactId>
         <version><!--VERSION-->0.5.1-SNAPSHOT<!--VERSION--></version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>acf-paper</artifactId>
+    <artifactId>acf-paper-modified</artifactId>
     <version><!--VERSION-->0.5.1-SNAPSHOT<!--VERSION--></version>
 
     <name>ACF (Paper)</name>
@@ -48,13 +48,13 @@
         </dependency>
         <dependency>
             <groupId>co.aikar</groupId>
-            <artifactId>acf-bukkit</artifactId>
+            <artifactId>acf-bukkit-modified</artifactId>
             <version><!--VERSION-->0.5.1-SNAPSHOT<!--VERSION--></version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>co.aikar</groupId>
-            <artifactId>acf-brigadier</artifactId>
+            <artifactId>acf-brigadier-modified</artifactId>
             <version><!--VERSION-->0.5.1-SNAPSHOT<!--VERSION--></version>
             <scope>compile</scope>
         </dependency>

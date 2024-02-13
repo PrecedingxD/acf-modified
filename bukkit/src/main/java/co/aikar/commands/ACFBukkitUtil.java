@@ -23,6 +23,9 @@
 
 package co.aikar.commands;
 
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.TextDecoration;
+import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -44,6 +47,8 @@ import java.util.stream.Collectors;
 
 public class ACFBukkitUtil {
 
+    public static boolean IS_ADVENTURE_MINIMESSAGE_SUPPORTED;
+
     public static String formatLocation(Location loc) {
         if (loc == null) {
             return null;
@@ -59,6 +64,42 @@ public class ACFBukkitUtil {
 
     public static String color(String message) {
         return ChatColor.translateAlternateColorCodes('&', message);
+    }
+
+    /**
+     * Apologies for the ugly method, but
+     * you've got to do what you've got to do.
+     */
+    public static Component convertLegacyColorsComponent(String content) {
+        if(!IS_ADVENTURE_MINIMESSAGE_SUPPORTED) {
+            throw new IllegalStateException("Adventure/MiniMessage support is not enabled.");
+        }
+
+        final String colorCharStr = Character.toString(ChatColor.COLOR_CHAR);
+
+        return MiniMessage.miniMessage().deserialize(content.replace("&", colorCharStr)
+                        .replace(colorCharStr + "a", "<green>")
+                        .replace(colorCharStr + "b", "<aqua>")
+                        .replace(colorCharStr + "c", "<red>")
+                        .replace(colorCharStr + "d", "<light_purple>")
+                        .replace(colorCharStr + "e", "<yellow>")
+                        .replace(colorCharStr + "f", "<white>")
+                        .replace(colorCharStr + "0", "<black>")
+                        .replace(colorCharStr + "1", "<dark_blue>")
+                        .replace(colorCharStr + "2", "<dark_green>")
+                        .replace(colorCharStr + "3", "<dark_aqua>")
+                        .replace(colorCharStr + "3", "<dark_aqua>")
+                        .replace(colorCharStr + "4", "<dark_red>")
+                        .replace(colorCharStr + "5", "<dark_purple>")
+                        .replace(colorCharStr + "6", "<dark_purple>")
+                        .replace(colorCharStr + "7", "<gray>")
+                        .replace(colorCharStr + "8", "<dark_gray>")
+                        .replace(colorCharStr + "9", "<blue>")
+                ).decorationIfAbsent(TextDecoration.ITALIC, content.contains(colorCharStr + "o") ? TextDecoration.State.TRUE : TextDecoration.State.FALSE)
+                .decorationIfAbsent(TextDecoration.STRIKETHROUGH, content.contains(colorCharStr + "m") ? TextDecoration.State.TRUE : TextDecoration.State.FALSE)
+                .decorationIfAbsent(TextDecoration.UNDERLINED, content.contains(colorCharStr + "n") ? TextDecoration.State.TRUE : TextDecoration.State.FALSE)
+                .decorationIfAbsent(TextDecoration.BOLD, content.contains(colorCharStr + "l") ? TextDecoration.State.TRUE : TextDecoration.State.FALSE)
+                .decorationIfAbsent(TextDecoration.OBFUSCATED, content.contains(colorCharStr + "k") ? TextDecoration.State.TRUE : TextDecoration.State.FALSE);
     }
 
     /**
@@ -326,4 +367,14 @@ public class ACFBukkitUtil {
     static boolean isValidItem(ItemStack item) {
         return item != null && item.getType() != Material.AIR && item.getAmount() > 0;
     }
+
+    static {
+        try {
+            Class.forName("net.kyori.adventure.text.minimessage.MiniMessage");
+            IS_ADVENTURE_MINIMESSAGE_SUPPORTED = true;
+        } catch (ClassNotFoundException e) {
+            IS_ADVENTURE_MINIMESSAGE_SUPPORTED = false;
+        }
+    }
+
 }
